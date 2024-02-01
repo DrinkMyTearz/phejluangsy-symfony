@@ -13,10 +13,14 @@
     </head>
     <body>
         <nav>
-            <a href="{{ path("app_home") }}">Water Shop</a>
-            <a href="{{ path("app_register") }}">About</a>
-            <a href="{{ path("app_login") }}">Login</a>
-            <a href="{{ path("app_register") }}">Sign in</a>
+            <div>
+                <a href="{{ path("app_pins") }}">Water Shop</a>
+                <a href="{{ path("app_add_produit") }}">Add product</a>
+            </div>
+            <div>
+                <a href="{{ path("app_login") }}">Login</a>
+                <a href="{{ path("app_register") }}">Sign up</a>
+            </div>
         </nav>
         {% block body %}
         {% endblock %}
