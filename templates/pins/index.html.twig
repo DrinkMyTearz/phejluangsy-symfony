@@ -4,10 +4,30 @@
 
 {% block body %}
 <div class="main">
-    <h1>{{ controller_name }}</h1>
+    <h1>Water Promo</h1>
 
-    <div class="last-post">
-
+    <div class="produit">
+        <h1>{{ "Last products" | trans }}</h1>
+        <div class="row">
+            {% if pins is empty %}
+                <div>
+                    Aucun produit trouvé.
+                </div>
+            {% else %}
+                <ul class="list-prod">
+                    {% for produit in pins|slice(0, 6) %}
+                        <div class="card">
+                            <img src="{{ produit.getImageUrl }}"/>
+                            <div>
+                                <div><strong>Nom du Produit:</strong> {{ produit.getNomProduit }}</div>
+                                <div><strong>Description:</strong> {{ produit.getDescription }}</div>
+                                <div><strong>Volume:</strong> {{ produit.getTypeVolume.volume }} L</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
     </div>
 
 </div>

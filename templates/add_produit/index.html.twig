@@ -5,7 +5,54 @@
 {% block body %}
 
 <div class="main">
-    <h1>{{ controller_name }}</h1>
-
+    <div class="adding">
+        <h1>{{ "Add product" | trans }}</h1>
+        <div class="row">
+                    {{form_start(form)}}
+                <div>
+                    {{ form_label(form.image_url, 'Image', {'class': 'form-label'}) }}
+                    {{ form_widget(form.image_url) }}
+                </div>
+                <div>
+                    {{ form_label(form.nom_produit, 'Nom du produit', {'class': 'form-label'}) }}
+                    {{ form_widget(form.nom_produit) }}
+                </div>
+                <div>
+                    {{ form_label(form.description, 'Description', {'class': 'form-label'}) }}
+                    {{ form_widget(form.description) }}
+                </div>
+                <div>
+                    {{ form_label(form.type_volume, 'Volume', {'class': 'form-label'}) }}
+                    {{ form_widget(form.type_volume) }}
+                </div>
+                <div>
+                    <button type="submit" >{{ "Add Product" | trans }}</button>
+                    {{form_end(form)}}
+                </div>
+        </div>
+    </div>
+    <div class="produit">
+        <h1>{{ "Your products" | trans }}</h1>
+        <div class="row">
+            {% if userProd is empty %}
+                <div>
+                    Aucun produit trouvé.
+                </div>
+            {% else %}
+                <ul class="list-prod">
+                    {% for produit in userProd %}
+                        <div class="card">
+                            <img src="{{ produit.getImageUrl }}"/>
+                            <div>
+                                <div><strong>Nom du Produit:</strong> {{ produit.getNomProduit }}</div>
+                                <div><strong>Description:</strong> {{ produit.getDescription }}</div>
+                                <div><strong>Volume:</strong> {{ produit.getTypeVolume.volume }} L</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}

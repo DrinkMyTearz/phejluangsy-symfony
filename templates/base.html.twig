@@ -14,15 +14,44 @@
     <body>
         <nav>
             <div>
-                <a href="{{ path("app_pins") }}">Water Shop</a>
+                <a href="{{ path("app_pins") }}">Water Promo</a>
+            {% if app.user %}
                 <a href="{{ path("app_add_produit") }}">Add product</a>
+            {% endif %}
             </div>
-            <div>
+
+
+            <div>    
+            {% if app.user %}
+            {% if 'ROLE_ADMIN' in app.user.roles %}
+                <a href="{{ path("app_admin_panel_control") }}">Admin control panel</a>
+            {% endif %}
+                <a href="{{ path('app_logout') }}">{{"Logout"|trans}}</a>
+            {% else %}    
                 <a href="{{ path("app_login") }}">Login</a>
                 <a href="{{ path("app_register") }}">Sign up</a>
+            {% endif %}
             </div>
+
         </nav>
         {% block body %}
         {% endblock %}
     </body>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <span>Water Promo</span>
+                </div>
+                <div>
+                    {% if app.request.locale == 'en' %}
+                        <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'fr'})) }}" class="btn btn-link">EN</a>
+                    {% else %}
+                        <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'en'})) }}" class="btn btn-link">FR</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </footer>
 </html>
