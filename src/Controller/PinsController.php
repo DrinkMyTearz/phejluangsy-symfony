@@ -18,6 +18,11 @@ class PinsController extends AbstractController
     #[Route('/', name: 'app_pins')]
     public function showPins(Request $request, EntityManagerInterface $entityManager): Response
     {
+        return $this->redirectToRoute('app_pin_trans', ["_locale"=>"en"]);
+    }
+
+    #[Route('{_locale}/', name: 'app_pin_trans')]
+    public function commeTuVeux(Request $request, EntityManagerInterface $entityManager): Response{
         $pins = $entityManager->getRepository(Produit::class)->findAll();
 
         return $this->render('pins/index.html.twig', [

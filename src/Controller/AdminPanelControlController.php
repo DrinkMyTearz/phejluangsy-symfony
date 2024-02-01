@@ -13,7 +13,7 @@ use App\Form\UserType;
 use App\Controller\SecurityController;
 class AdminPanelControlController extends AbstractController
 {
-    #[Route('/admin_panel_control', name: 'app_admin_panel_control')]
+    #[Route('{_locale}/admin_panel_control', name: 'app_admin_panel_control')]
     public function showUser(Request $request, EntityManagerInterface $entityManager): Response
     {
         $users = $entityManager->getRepository(User::class)->findAll();
@@ -23,7 +23,7 @@ class AdminPanelControlController extends AbstractController
         ]);
     }
 
-    #[Route('/delete/{id}', name: 'app_delete')]
+    #[Route('{_locale}/delete/{id}', name: 'app_delete')]
     public function deleteUser(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = $entityManager->getRepository(User::class)->find($request->get('id'));

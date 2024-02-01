@@ -36,7 +36,7 @@
         <div class="row">
             {% if userProd is empty %}
                 <div>
-                    No product found.
+                    {{ "No product found" | trans }}.
                 </div>
             {% else %}
                 <ul class="list-prod">

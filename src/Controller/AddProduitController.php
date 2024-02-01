@@ -15,7 +15,7 @@ use App\Controller\SecurityController;
 class AddProduitController extends AbstractController
 {
 
-    #[Route('/add_produit', name: 'app_add_produit')]
+    #[Route('{_locale}/add_produit', name: 'app_add_produit')]
     public function addProduit(Request $request, EntityManagerInterface $entityManager): Response
     {
         // dd($this->getUser()->getId());
@@ -39,7 +39,7 @@ class AddProduitController extends AbstractController
         
     }
 
-    #[Route('/delete/{id}', name: 'app_delete_prod')]
+    #[Route('{_locale}/delete/{id}', name: 'app_delete_prod')]
     public function deleteProd(Request $request, EntityManagerInterface $entityManager): Response
     {
         $prod = $entityManager->getRepository(Produit::class)->find($request->get('id'));
