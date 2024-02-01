@@ -16,7 +16,7 @@
             <div>
                 <a href="{{ path("app_pins") }}">Water Promo</a>
             {% if app.user %}
-                <a href="{{ path("app_add_produit") }}">Add product</a>
+                <a href="{{ path("app_add_produit") }}">{{ "Add product" | trans }}</a>
             {% endif %}
             </div>
 
@@ -24,12 +24,12 @@
             <div>    
             {% if app.user %}
             {% if 'ROLE_ADMIN' in app.user.roles %}
-                <a href="{{ path("app_admin_panel_control") }}">Admin control panel</a>
+                <a href="{{ path("app_admin_panel_control") }}">{{ "Admin control panel" | trans }}</a>
             {% endif %}
-                <a href="{{ path('app_logout') }}">{{"Logout"|trans}}</a>
+                <a href="{{ path('app_logout') }}">{{ "Logout" | trans }}</a>
             {% else %}    
-                <a href="{{ path("app_login") }}">Login</a>
-                <a href="{{ path("app_register") }}">Sign up</a>
+                <a href="{{ path("app_login") }}">{{ "Login" | trans }}</a>
+                <a href="{{ path("app_register") }}">{{ "Sign in" | trans }}</a>
             {% endif %}
             </div>
 

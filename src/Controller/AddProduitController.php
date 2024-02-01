@@ -38,4 +38,13 @@ class AddProduitController extends AbstractController
         ]);
         
     }
+
+    #[Route('/delete/{id}', name: 'app_delete_prod')]
+    public function deleteProd(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $prod = $entityManager->getRepository(Produit::class)->find($request->get('id'));
+        $entityManager->remove($prod);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_add_produit');
+    }
 }

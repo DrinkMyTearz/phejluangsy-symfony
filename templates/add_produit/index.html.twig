@@ -14,7 +14,7 @@
                     {{ form_widget(form.image_url) }}
                 </div>
                 <div>
-                    {{ form_label(form.nom_produit, 'Nom du produit', {'class': 'form-label'}) }}
+                    {{ form_label(form.nom_produit, 'Product name', {'class': 'form-label'}) }}
                     {{ form_widget(form.nom_produit) }}
                 </div>
                 <div>
@@ -26,7 +26,7 @@
                     {{ form_widget(form.type_volume) }}
                 </div>
                 <div>
-                    <button type="submit" >{{ "Add Product" | trans }}</button>
+                    <button type="submit" >{{ "Add product" | trans }}</button>
                     {{form_end(form)}}
                 </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="row">
             {% if userProd is empty %}
                 <div>
-                    Aucun produit trouvé.
+                    No product found.
                 </div>
             {% else %}
                 <ul class="list-prod">
@@ -44,9 +44,12 @@
                         <div class="card">
                             <img src="{{ produit.getImageUrl }}"/>
                             <div>
-                                <div><strong>Nom du Produit:</strong> {{ produit.getNomProduit }}</div>
+                                <div><strong>{{ "Product name" | trans }}:</strong> {{ produit.getNomProduit }}</div>
                                 <div><strong>Description:</strong> {{ produit.getDescription }}</div>
                                 <div><strong>Volume:</strong> {{ produit.getTypeVolume.volume }} L</div>
+                                <form method="post" action="{{ path('app_delete_prod', {'id': produit.id}) }}" onsubmit="return confirm('{{ "Are you sure you want to delete this item" | trans }}?');">
+                                    <button class="btn btn-danger">{{"Delete"|trans}}</button>
+                                </form>
                             </div>
                         </div>
                     {% endfor %}

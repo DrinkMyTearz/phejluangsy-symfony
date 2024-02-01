@@ -1,10 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AdminPanelControl{% endblock %}
+{% block title %}AdminControlPanel{% endblock %}
 
 {% block body %}
 
 <div class="main">
-    <h1>Water Promo</h1>
+    <h1 class="main-title">{{ "User list" | trans }}</h1>
+
+    <div class="user">
+        <div class="row">
+            {% if users is empty %}
+                <div>
+                    {{ "No user found" | trans }}.
+                </div>
+            {% else %}
+                <ul class="list-prod">
+                    {% for user in users %}
+                        <div class="card">
+                            <div><strong>{{ "Username" | trans }}:</strong> {{ user.getUsername }}</div>
+                            <div><strong>Email:</strong> {{ user.getEmail }}</div>
+
+                            <form method="post" action="{{ path('app_delete', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <button class="btn btn-danger">{{"Delete"|trans}}</button>
+                            </form>
+                            
+                        </div>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+
 </div>
 {% endblock %}

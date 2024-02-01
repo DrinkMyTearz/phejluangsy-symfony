@@ -4,14 +4,14 @@
 
 {% block body %}
 <div class="main">
-    <h1>Water Promo</h1>
+    <h1 class="main-title">Water Promo</h1>
 
     <div class="produit">
         <h1>{{ "Last products" | trans }}</h1>
         <div class="row">
             {% if pins is empty %}
                 <div>
-                    Aucun produit trouvé.
+                    {{ "No product found" | trans }}.
                 </div>
             {% else %}
                 <ul class="list-prod">
@@ -19,7 +19,7 @@
                         <div class="card">
                             <img src="{{ produit.getImageUrl }}"/>
                             <div>
-                                <div><strong>Nom du Produit:</strong> {{ produit.getNomProduit }}</div>
+                                <div><strong>{{ "Product name" | trans }}:</strong> {{ produit.getNomProduit }}</div>
                                 <div><strong>Description:</strong> {{ produit.getDescription }}</div>
                                 <div><strong>Volume:</strong> {{ produit.getTypeVolume.volume }} L</div>
                             </div>
